@@ -109,3 +109,46 @@ def generate_response(description: str) -> str:
         | StrOutputParser()
     )
     return chain.invoke({"description": description, "context": context})
+
+# ───────────────────────────────────────────────────────────────────────────────
+# New mini‑chains for clarification
+# ───────────────────────────────────────────────────────────────────────────────
+_CLARIFY_TEMPLATE = """
+You are an attentive supermarket clerk.
+The customer said: "{description}"
+
+Ask additional questions to clarify the request.
+If any information on the price, brand, or type is missing, ask for it.
+Make sure you ask about all of the missing details.
+""".strip()
+
+_REFINE_TEMPLATE = """
+You are summarising a customer request for a product search engine.
+
+The original description:
+{description}
+
+Extra details from a follow‑up question:
+{clarification}
+
+Rewrite everything into a single, short search query (<= 30 words) that captures
+ALL the constraints. Return ONLY that query.
+""".strip()
+
+
+def generate_clarifying_question(description: str) -> str:
+    prompt = ChatPromptTemplate.from_template(_CLARIFY_TEMPLATE)
+    return (
+        prompt
+        | model
+        | StrOutputParser()
+    ).invoke({"description": description})
+
+
+def generate_refined_description(description: str, clarification: str) -> str:
+    prompt = ChatPromptTemplate.from_template(_REFINE_TEMPLATE)
+    return (
+        prompt
+        | model
+        | StrOutputParser()
+    ).invoke({"description": description, "clarification": clarification})
