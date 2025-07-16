@@ -120,6 +120,7 @@ The customer said: "{description}"
 Ask additional questions to clarify the request.
 If any information on the price, brand, or type is missing, ask for it.
 Make sure you ask about all of the missing details.
+Try to be short and concise, just focus on the missing details.
 """.strip()
 
 _REFINE_TEMPLATE = """

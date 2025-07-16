@@ -102,8 +102,8 @@ def route_node(state: ChatState) -> ChatState:
     return state
 
 def decide_next(state: ChatState):
+    
     """Return the *label* of the next node or END."""
-    # (same logic that was in the old `route` function)
     if state.generated:
         return END
 
