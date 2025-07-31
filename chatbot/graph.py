@@ -129,7 +129,7 @@ workflow = StateGraph(ChatState)
 
 # real work nodes
 workflow.add_node("ask", ask_node)
-workflow.add_node("clarify_question", clarify_question_node)
+workflow.add_node("clarify_question", clarify_question_node) 
 workflow.add_node("refine_description", refine_description_node)
 workflow.add_node("generate", generate_node)
 

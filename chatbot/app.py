@@ -4,7 +4,7 @@ Tiny Streamlit UI that drives the LangGraph pipeline.
 import streamlit as st
 from langchain_core.messages import HumanMessage, AIMessage
 
-from graph import ChatState, chat_pipeline
+from graph import ChatState, chat_pipeline 
 
 # ───────────────────────────────────────────────────────────────────────────────
 st.set_page_config(page_title="Supermarket Assistant", page_icon="🛒")

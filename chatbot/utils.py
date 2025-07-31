@@ -63,7 +63,7 @@ Description:
 {page_content}
 """.strip())
 
-def format_docs(docs) -> str:
+def format_docs(docs) -> str: 
     """Render retrieved documents for insertion into the system prompt."""
     return "\n–––\n".join(format_document(d, DOC_TEMPLATE) for d in docs)
 
